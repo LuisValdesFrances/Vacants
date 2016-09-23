@@ -8,28 +8,38 @@ import java.util.Date;
  */
 public class Vacant {
     private int id;
-    private Date publicationDate;
+    private String name;
+    private Date date;
     private String description;
     private String detail;
 
     public Vacant(int id) {
         this.id = id;
+        this.date = new Date();//Asiga por defecto la fecha del servidor
     }
 
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
-
-    public Date getPublicationDate() {
-        return publicationDate;
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPublicationDate(Date publicationDate) {
-        this.publicationDate = publicationDate;
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date publicationDate) {
+        this.date = publicationDate;
     }
 
     public String getDescription() {
@@ -50,7 +60,7 @@ public class Vacant {
 
     @Override
     public String toString() {
-        return "Vacant{" + "id=" + id + ", publicationDate=" + publicationDate + ", description=" + description + ", detail=" + detail + '}';
+        return "Vacant{" + "id=" + id + ", publicationDate=" + date + ", description=" + description + ", detail=" + detail + '}';
     }
     
 }
