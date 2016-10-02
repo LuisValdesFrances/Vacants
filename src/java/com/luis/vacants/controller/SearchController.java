@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.luis.vacants.controller;
 
 import com.luis.vacants.dao.DbConnection;
@@ -15,11 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author lvaldes
+ * @author Luis
  */
-@WebServlet(name = "SiteController", urlPatterns = {"/SiteController"})
-public class SiteController extends HttpServlet {
-
+@WebServlet(name = "SearchController", urlPatterns = {"/SearchController"})
+public class SearchController extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -33,18 +37,9 @@ public class SiteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("call doGet");
-        RequestDispatcher rd;
-        DbConnection conn = new DbConnection();
-        VacantDao vacantDao = new VacantDao(conn);
-        List<Vacant> list = vacantDao.getLasts();
-        conn.disconnect();
-        request.setAttribute("lasts", list);
-        rd = request.getRequestDispatcher("/index.jsp");
-        rd.forward(request, response);
         
     }
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -56,6 +51,22 @@ public class SiteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("call doPost");
+        //Recibo la cadena de busqueda del formulario
+        String q = request.getParameter("query");
+        
+        DbConnection conn = new DbConnection();
+        VacantDao vacantDao = new VacantDao(conn);
+        List<Vacant> vacants = vacantDao.getByQuery(q);
+        conn.disconnect();
+        
+        //Comparto la variable msg para poder accederla desde la vista con Expresion language
+        request.setAttribute("vacants", vacants);
+        RequestDispatcher rd;
+        
+        //Envio la respuesta. Renderizo la vista detail.jsp
+        rd = request.getRequestDispatcher("/list_vacants.jsp");
+        rd.forward(request, response);
+        
     }
+
 }

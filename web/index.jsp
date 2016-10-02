@@ -26,15 +26,15 @@
         <h3 class="text-muted">My Company</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="#">Inicio</a></li>            
-            <li><a href="#">Administración</a></li>                        
-            <li><a href="#">Acerca</a></li>            
+            <li><a href="SiteController">Inicio</a></li>            
+            <li><a href="AdminController?action=login">Administración</a></li>                        
+            <li><a href="about.jsp">Acerca</a></li>            
           </ul>
         </nav>
       </div>
       
       <!-- Formulario para la busqueda. El formulario es enviado por POST al BusquedaController -->    
-      <form method ="post" action="#" class="navbar-form navbar-right">
+      <form method ="post" action="SearchController" class="navbar-form navbar-right">
         <div class="form-group">
           <input type="text" name="query" required placeholder="Buscar oferta..." class="form-control">
         </div>        
@@ -52,23 +52,22 @@
           Es muy fácil de usar, solo haz clic en una vacante, ingresa para ver los detalles y envíanos tu CV en formato 
           PDF o DOCX. Nosotros revisaremos tu CV y posteriormente te contactaremos.<br><br>
 
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Ver más Ofertas</a></p>                
+        <p><a class="btn btn-lg btn-success" href="VacantController?action=list" role="button">Ver más Ofertas</a></p>                
       </div>
 
       <h1>Ofertas recientes</h1>
 
      <!-- Example row of columns -->
       <div class="row">
-        
-          <c:forEach item = "${lasts}"//aqui me quede
-          <div class="col-lg-4">
-          <h2>Safari bug warning!</h2>
-          <p class="text-danger text-justify">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p class="text-justify">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      
-      
+        <c:forEach items = "${lasts}" var="vacant" varStatus="status">
+            <div class="col-lg-4">
+              <h2>${vacant.id}</h2>
+              <p class="text-danger text-justify">${vacant.title}</p>
+              <p class="text-justify">${vacant.description}</p>
+              <p><a class="btn btn-primary" 
+                    href="VacantController?action=detail&id=${vacant.id}"role="button">Ver detalle</a></p>
+            </div>
+        </c:forEach>
       </div>
 
       <!-- Site footer -->

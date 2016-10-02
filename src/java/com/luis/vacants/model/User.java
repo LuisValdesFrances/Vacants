@@ -7,14 +7,9 @@ package com.luis.vacants.model;
 public class User {
     private String email;
     private String name;
-    private String username;
-    private String password;
+    private String pass;
     private String profile;
     private String status = "active";
-
-    public User(String email) {
-        this.email = email;
-    }
 
     public String getEmail() {
         return email;
@@ -32,20 +27,12 @@ public class User {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPass() {
+        return pass;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public String getProfile() {
@@ -66,7 +53,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "email=" + email + ", name=" + name + ", username=" + username + ", password=" + password + ", profile=" + profile + ", status=" + status + '}';
+        return "User{" + "email=" + email + ", name=" + name + ", password=" + pass + ", profile=" + profile + ", status=" + status + '}';
     }
     
     

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,9 +26,9 @@
         <h3 class="text-muted">My Company</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="#">Inicio</a></li>            
-            <li><a href="#">AdministraciÃ³n</a></li>                        
-            <li><a href="#">Acerca</a></li>            
+            <li><a href="SiteController">Inicio</a></li>            
+            <li><a href="AdminController?action=login">Administración</a></li>                        
+            <li><a href="about.jsp">Acerca</a></li>            
           </ul>
         </nav>
       </div>
@@ -53,34 +54,23 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>              
-                <tr>
-                  <td class="left">My id</td>
-                  <td>Nombre vacante</td>
-                  <td>fecha</td>
-                  <td>
-                    <a class="btn btn-default" href="#" role="button">Ver Detalles</a>                                                    
-                    <a class="btn btn-default" href="#" role="button">Eliminar</a>                         
-                  </td>  
-                </tr>
-                <tr>
-                  <td class="left">My id</td>
-                  <td>Nombre vacante</td>
-                  <td>fecha</td>
-                  <td>
-                    <a class="btn btn-default" href="#" role="button">Ver Detalles</a>                                                    
-                    <a class="btn btn-default" href="#" role="button">Eliminar</a>                         
-                  </td>  
-                </tr>
-                <tr>
-                  <td class="left">My id</td>
-                  <td>Nombre vacante</td>
-                  <td>fecha</td>
-                  <td>
-                    <a class="btn btn-default" href="#" role="button">Ver Detalles</a>                                                    
-                    <a class="btn btn-default" href="#" role="button">Eliminar</a>                         
-                  </td>  
-                </tr>
+            <tbody>
+                <c:forEach items = "${vacants}" var="vacant" varStatus="status">
+                    <tr>
+                      <td class="left">${vacant.id}</td>
+                      <td>${vacant.title}</td>
+                      <td>${vacant.date}</td>
+                      <td>
+                        <a class="btn btn-default" href="VacantController?action=detail&id=${vacant.id}" 
+                           role="button">Ver Detalles</a>             
+                        <!--Solo esta disponible para usuarios logueados-->
+                        <c:if test="${user.email != null}">
+                            <a class="btn btn-default" href="AdminController?action=delete&id=${vacant.id}" 
+                               role="button">Eliminar</a>   
+                        </c:if>
+                      </td>  
+                    </tr>
+                </c:forEach>
             </tbody>           
           </table>
         </div>

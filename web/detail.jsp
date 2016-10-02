@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Detalle de la vacance - Ingeniero en procesos de inyeccion de plasticos</title>
+    <title>Detalle de la vacance - ${vacant.title}</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -25,8 +26,8 @@
         <h3 class="text-muted">My Company</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="#">Inicio</a></li>            
-            <li><a href="#">AdministraciÃ³n</a></li>                        
+            <li><a href="SiteController">Inicio</a></li>            
+            <li><a href="AdminController?action=login">Administración</a></li>                        
             <li><a href="#">Acerca</a></li>            
           </ul>
         </nav>
@@ -41,15 +42,15 @@
 
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">Numero de la vacante</h3>
+          <h3 class="panel-title">${vacant.title}</h3>
         </div>
         <div class="panel-body">
-          <h5><b>Vacante</b>: nombre de la vacante</h5>
-          <h5><b>Publicado</b>: fecha de publicacion</h5>                             
-          <b>DescripciÃ³n:</b><br>
-          <p class="text-justify">descripcion de la vacante</p>
+          <h5><b>Vacante </b>${vacant.title}</h5>
+          <h5><b>Publicado </b>${vacant.date}</h5>                             
+          <b>Descripción:</b><br>
+          <p class="text-justify">${vacant.description}</p>
           <b>Detalles de la vacante</b>:<br>
-          aqui van los detalles
+          ${vacant.detail}
         </div>
       </div>      
       <!-- Site footer -->

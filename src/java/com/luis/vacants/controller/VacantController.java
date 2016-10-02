@@ -10,6 +10,7 @@ import com.luis.vacants.dao.VacantDao;
 import com.luis.vacants.model.Vacant;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,13 @@ public class VacantController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String action = request.getParameter("action");
+        if(action.equals("detail")){
+            this.showDetail(request,response);
+        }
+        else if(action.equals("list")){
+            this.showList(request,response);
+        }
     }
 
     /**
@@ -52,7 +59,7 @@ public class VacantController extends HttpServlet {
             throws ServletException, IOException {
         //Rebibo parametros
         Vacant vacant = new Vacant(0);
-        vacant.setName(request.getParameter("nombre"));
+        vacant.setTitle(request.getParameter("nombre"));
         vacant.setDescription(request.getParameter("descripcion"));
         vacant.setDetail(request.getParameter("detalle"));
         System.out.println("Nueva vacante recibida: " + vacant);
@@ -78,6 +85,39 @@ public class VacantController extends HttpServlet {
         
         
         
+    }
+
+    private void showDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Recibo el id de la vacante a mostrar
+        int idVacant = Integer.parseInt(request.getParameter("id"));
+        DbConnection conn = new DbConnection();
+        VacantDao vacantDao = new VacantDao(conn);
+        Vacant vacant = vacantDao.getById(idVacant);
+        conn.disconnect();
+        
+        //Comparto la variable msg para poder accederla desde la vista con Expresion language
+        request.setAttribute("vacant", vacant);
+        RequestDispatcher rd;
+        
+        //Envio la respuesta. Renderizo la vista detail.jsp
+        rd = request.getRequestDispatcher("/detail.jsp");
+        rd.forward(request, response);
+    }
+    
+    private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Recibo el id de la vacante a mostrar
+        DbConnection conn = new DbConnection();
+        VacantDao vacantDao = new VacantDao(conn);
+        List<Vacant> vacants = vacantDao.getAll();
+        conn.disconnect();
+        
+        //Comparto la variable msg para poder accederla desde la vista con Expresion language
+        request.setAttribute("vacants", vacants);
+        RequestDispatcher rd;
+        
+        //Envio la respuesta. Renderizo la vista detail.jsp
+        rd = request.getRequestDispatcher("/list_vacants.jsp");
+        rd.forward(request, response);
     }
 
 }

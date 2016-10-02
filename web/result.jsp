@@ -25,9 +25,9 @@
         <h3 class="text-muted">My Company - Administración</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="#">Crear Vacante</a></li>            
-            <li><a href="#">Vacantes</a></li>                        
-            <li><a href="#">Salir</a></li>            
+            <li><a href="AdminController?action=create">Crear Vacante</a></li>            
+            <li><a href="VacantController?action=list">Vacantes</a></li>                           
+            <li><a href="AdminController?action=logout">Salir</a></li>            
           </ul>
         </nav>
       </div>

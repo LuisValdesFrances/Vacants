@@ -8,14 +8,14 @@ import java.util.Date;
  */
 public class Vacant {
     private int id;
-    private String name;
     private Date date;
+    private String title;
     private String description;
     private String detail;
 
     public Vacant(int id) {
         this.id = id;
-        this.date = new Date();//Asiga por defecto la fecha del servidor
+        this.date = new Date();//Asigna por defecto la fecha del servidor
     }
 
     public int getId() {
@@ -26,12 +26,12 @@ public class Vacant {
         this.id = id;
     }
     
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getDate() {

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>AdministraciÃ³n del Sistema</title>
+    <title>My Company - Acerca</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -16,39 +16,33 @@
   </head>
 
   <body>
-
+    
     <div class="container">
 
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
-        <h3 class="text-muted">My Company - AdministraciÃ³n</h3>
+        <h3 class="text-muted">My Company</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="#">Crear Vacante</a></li>            
-            <li><a href="#">Vacantes</a></li>                           
-            <li><a href="#">Salir</a></li>            
+            <li><a href="SiteController">Inicio</a></li>            
+            <li><a href="AdminController?action=login">Administración</a></li>                        
+            <!--<li><a href="about.jsp">Acerca</a></li>-->            
           </ul>
         </nav>
       </div>
-      <br>
 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Bienvenido </h3>          
-        </div>
-        <div class="panel-body">
-          <h2 class="panel-title"><b>Username</b><br> username<br><br></h2>
-          <h2 class="panel-title"><b>Email</b><br> email<br><br></h2>
-          <h2 class="panel-title"><b>Perfil</b><br> tipo usuario<br><br></h2>
-          <h2 class="panel-title"><b>Estatus</b><br>estatus<br><br></h2>
-        </div>
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h2>ACERCA</h2>
+        <p class="lead text-justify">Si tu compraste el curso <a href='#'>Desarrollo de aplicaciones web con Java EE - Servlets y JSP </a>
+          tu aprenderás a desarrollar esta aplicación paso a paso completamente desde cero. Todo el código fuente y la documentación 
+          estará disponible para que la puedas utilizarla en tus propios proyectos.
+          Cualquier duda o comentario puedes enviarme un correo electrónico.<br> <br>         
+          <b>Autor</b>: Luis Valdes Frances<br>
+          <b>Email</b>: triskel67@hotmail.com
+        <p>
       </div>
-
-      <!-- Site footer -->
-      <footer class="footer">
-        <p>&copy; 2016 My Company, Inc.</p>
-      </footer>
 
     </div> <!-- /container -->
 
